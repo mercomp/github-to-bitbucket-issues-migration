@@ -1,5 +1,5 @@
 require 'octokit'
-require 'zip/zip'
+require 'zip'
 require 'json'
 
 require_relative 'formatters/base'
@@ -87,7 +87,7 @@ module GTBI
     end
 
     def generate_archive
-      Zip::ZipFile.open(@filename, Zip::ZipFile::CREATE) do |zipfile|
+      Zip::File.open(@filename, Zip::File::CREATE) do |zipfile|
         zipfile.get_output_stream("db-1.0.json") do |f|
           f.puts to_json
         end
